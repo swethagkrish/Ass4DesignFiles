@@ -20,18 +20,13 @@ public:
 
   bool checkInType(MediaType);
 
-  static registerType(string
-  Type,
-  Factory MovieFactory
-  *);
-  Movie*
-  static create(string
-  Type,
-  istream Is
-  );
+  enum MediaType {DVD};
+
+  static registerType(string Type, Factory MovieFactory*);
+
+  Movie* static create(string Type, istream Is);
 
 private:
-  enum MediaType;
   map<MediaType, int> Stock;
   string Director;
   string Title;
