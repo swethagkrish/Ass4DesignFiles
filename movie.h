@@ -11,25 +11,24 @@
 #include Classics.h
 
 using namespace std;
-
+#include store.h
+enum MediaType {DVD};
 class Movie {
 public:
-  Movie() = 0;
+  Movie() = default;
+  void read(istream Is) = 0;
+  string getNameType()  = 0;
+  bool checkOut(Type MediaType);
+  bool checkIn(Type MediaType);
+  static registerType(char MovieType, MovieFactory* Factory);
+  Movie* static create(char MovieType);
 
-  bool checkOutType(MediaType);
-
-  bool checkInType(MediaType);
-
-  enum MediaType {DVD};
-
-  static registerType(string Type, Factory MovieFactory*);
-
-  Movie* static create(string Type, istream Is);
 
 private:
-  map<MediaType, int> Stock;
+  static map<char, MovieFactory> Factories;
   string Director;
   string Title;
+
 }
 #endif //ASS4DESIGNFILES_MOVIE_H
 
