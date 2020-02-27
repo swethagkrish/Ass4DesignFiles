@@ -5,20 +5,51 @@
 #ifndef ASS4DESIGNFILES_STORE_H
 #define ASS4DESIGNFILES_STORE_H
 
-#include movies.h
-#include customers.h
+
 class Store {
 public:
   Store() = default;
-  borrow(Transaction Trans);
-  returnItem(Transaction Trans);
+
   history(Customer* Cust);
   inventory()
+
+  bool readMoviesFromFile(string FileName);
+  bool readCustomersFromFile(string FileName);
+  bool readCommandsFromFile(string FileName);
+
+  Movie* findMovie(char Type, istream Attributes);
+  Customer* findCustomer(int CustId);
+
 private:
-  set<Movie*> Comedies;
-  set<Movie*> Dramas;
-  set<Movie*> Classics;
+  map<char, set<Movies*>> Movies;
   HashMap<int, Customer*> Customers;
+};
+
+template <typename K, typename V>
+class HashMap {
+  struct HashEntry <K, V> {
+    Key = K;
+    Value = V;
+    Next = HashEntry<K,V>*;
+  };
+public:
+  HashMap() = default;
+  int size();
+  bool isEmpty();
+  bool contains(Key K);
+  V get(Key K);
+  bool add (Key K, Value V);
+  bool remove(Key K);
+  clear();
+
+  int hashFunction(Key K);
+  double loadFactor();
+  rehash();
+private:
+  int Size;
+  HashEntry<K,V>* {};
+  static int intialSize;
+  static double MAX_LOUD_FACTOR;
 };
 
 #endif //ASS4DESIGNFILES_STORE_H

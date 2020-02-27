@@ -10,7 +10,8 @@
 class Classics : public Movie {
 public:
   Classic() = default;
-  void read(istream &Is) override;
+  read(istream &Is) override;
+  readKey(istream &Is) override;
   string getTypeName() override;
 };
 
